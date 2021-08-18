@@ -1,0 +1,67 @@
+
+Da wir da wieder das Thema Klassen und Objekte haben, versuche ich das mal kurz zu erklären.
+Das ist jetzt vielleicht nicht die beste Erklärung, aber ich hoffe es ist einigermaßen verständlich.
+Eine Klasse ist quasi der Bauplan von etwas. Nehmen wir mal an, wir haben eine Klasse, die "Schuh" heißt. Ein Schuh hat eine Marke, eine Größe, eine Farbe etc. pp.
+Redest du aber im Allgemeinen von einem Schuh, weißt du zwar, dass dieser eine Größe, Marke und Farbe hat, kannst aber nicht sagen welche, da du diesen nicht vor Augen hast.
+Anders ist das, wenn du von deinem Schuh redest. In diesem Fall ist dein Schuh dann ein Objekt der Klasse Schuh. Von deinem Schuh kennst du die Marke, Farbe und Größe.
+
+Das ganze lässt sich dann auch auf einen 'discord.Member' oder eine 'discord.Role' übertragen.
+Redest du im Allgemeinen von einem Discord-Nutzer, weißt du, dass dieser einen Namen, einen Avatar und eine ID hat,
+aber kannst sie hier wieder nicht abfragen, da jeder Nutzer ein Objekt dieser Klasse ist. Möchtest du also die ID von
+einem Nutzer haben, musst du darauf über das Objekt zugreifen.
+
+In deinem Fall möchtest du ein Objekt der discord.Role Klasse haben, dessen id 695662095106179173 entspricht. Du versuchst ein Attribut einer Klasse aufzurufen.
+
+1. Attribute lassen sich nicht aufrufen (Bsp. discord.Member.id -> id = Attribut ; discord.Member.edit() -> edit() = Methode (auch zu erkennen an den ())
+
+2. Klassen sind keine Objekte. discord.Role.id beschreibt die ID einer Rolle, stellt aber keine Rolle dar.
+===========================================================================================
+Jetzt werfen wir einen Blick in die allmächtige Dokumentation.
+Vorgehen wenn du nach etwas suchst. (Bsp. du suchst nach einer Methode, um eine Rolle anhand ihrer ID zu erhalten)
+1. Gib einfach das englische Wort für das ein, was du willst. Rolle erhalten -> get_role
+findet sich da nichts
+2. Wo vermutest du eine solche Methode? Welche Klasse könnte dir da helfen? Da Rollen zu einem Server / einer Guilde gehören, macht es Sinn, dort zu suchen
+3. Du navigierst bei Discord Models zum Unterpunkt Guild
+4. Du guckst in der Übersicht nach einem passenden Namen oder scrollst einfach durch
+5. Findest du eine vielversprechende Methode, guckst du, welche Parameter dieser hat, was dieser zurückgibt und welchen Datentyp der Rückgabewert hat
+6. Du siehst: "Oh..., get_role gibt mir eine discord.Role zurück, wenn ich ihr eine id übergebe"
+7. Du implementierst die Methode in deinen Code
+
+
+add_reactions
+administrator
+attach_files
+ban_members
+change_nickname
+connect
+create_instant_invite
+deafen_members
+embed_links
+external_emojis
+kick_members
+manage_channels
+manage_emojis
+manage_guild
+manage_messages
+manage_nicknames
+manage_permissions
+manage_roles
+manage_webhooks
+mention_everyone
+move_members
+mute_members
+priority_speaker
+read_message_history
+read_messages
+request_to_speak
+send_messages
+send_tts_messages
+speak
+stream
+use_external_emojis
+use_slash_commands
+use_voice_activation
+value
+view_audit_log
+view_channel
+view_guild_insights
