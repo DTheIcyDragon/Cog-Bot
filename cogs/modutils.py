@@ -31,10 +31,10 @@ class ModUtilsCog(commands.Cog):
                      876923450193752104,#mod-abstimmungen
                      876923627080155177,#richterliche-anträge
                      876923883419209738,#brett-der-schande
-                     877244424185315389#freestuff
+                     877244424185315389 #freestuff
                      ]
 
-        if any(blacklist):
+        if ctx.channel.id in blacklist:
             em = discord.Embed(title="An Error occurred!",
                                description="You are not allowed to use that command here",
                                color = discord.Color.red())
@@ -147,7 +147,7 @@ class ModUtilsCog(commands.Cog):
                 await msg.delete()
         else:
             pass
-        await self.client.process_commands(msg)
+
 
 def setup(client):
     client.add_cog(ModUtilsCog(client))
