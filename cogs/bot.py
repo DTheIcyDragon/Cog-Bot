@@ -10,7 +10,7 @@ def sec_to_min(time):
     minutes, seconds = divmod(seconds, 60)
     return str(hours) + "h " + str(minutes) + "m " + str(int(seconds)) + "s"
 
-class BotCog(commands.Cog):
+class Bot(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -43,4 +43,4 @@ class BotCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(BotCog(client))
+    client.add_cog(Bot(client))

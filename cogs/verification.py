@@ -48,6 +48,10 @@ class VerifyCog(commands.Cog):
             await ctx.author.add_roles(verified, reason=f"Verifizierung von {ctx.author}", atomic=True)
             await ctx.channel.delete(reason="Verifizierung abgeschlossen")
 
+            true_member_count = len([m for m in ctx.guild.members if not m.bot])
+            channel = ctx.guild.get_channel(878401877715329064)
+            await channel.edit(name=f"😃 User: {true_member_count}")
+
     @commands.Cog.listener()
     async def on_member_join(self, member):
         guild = member.guild
@@ -66,7 +70,7 @@ class VerifyCog(commands.Cog):
 
 
         em = discord.Embed(title = f"Verifizierung für {member.display_name}",
-                           description=f"Bitte sende in diesen Channel `.verify` wenn du bereit bist die Regeln dieses Discords zu akzeptieren.",
+                           description=f"Bitte sende in diesen Channel `.verify` wenn du bereit bist die Regeln(<#705800487517028493>) dieses Discords zu akzeptieren.",
                            color=discord.Color.from_rgb(91, 238, 31))
 
         await channel.send(embed = em)

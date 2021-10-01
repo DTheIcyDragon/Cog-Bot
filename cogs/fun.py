@@ -3,7 +3,7 @@ from discord.ext import commands
 
 
 
-class FunCog(commands.Cog):
+class Fun(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -34,4 +34,4 @@ class FunCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(FunCog(client))
+    client.add_cog(Fun(client))

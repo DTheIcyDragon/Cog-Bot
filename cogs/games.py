@@ -3,7 +3,7 @@ import random
 import asyncio
 from discord.ext import commands
 
-class GamesCog(commands.Cog):
+class Games(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -54,14 +54,14 @@ class GamesCog(commands.Cog):
         await ctx.send(embed=em)
 
     @commands.command()
-    async def roll(self, ctx, d, count):
+    async def roll(self, ctx, dice_size = 6, trows = 1):
         answer = []
-        for i in range(int(count)):
-            choice = random.randint(1,int(d))
+        for i in range(int(trows)):
+            choice = random.randint(1,int(dice_size))
             answer.append(choice)
 
         em = discord.Embed(title=f"{ctx.author.display_name}", description=answer, color=discord.Color.dark_green())
         await ctx.send(embed=em)
 
 def setup(client):
-    client.add_cog(GamesCog(client))
+    client.add_cog(Games(client))

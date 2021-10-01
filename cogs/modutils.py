@@ -7,7 +7,7 @@ import os
 from datetime import datetime
 import pytz
 
-class ModUtilsCog(commands.Cog):
+class ModUtils(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -150,4 +150,4 @@ class ModUtilsCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(ModUtilsCog(client))
+    client.add_cog(ModUtils(client))

@@ -7,7 +7,7 @@ import discord
 from discord.ext import commands
 
 
-class UtilitieCog(commands.Cog):
+class Utilitie(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -66,7 +66,7 @@ class UtilitieCog(commands.Cog):
         created_at.timestamp()
         created_at = (time.mktime(created_at.timetuple()))
 
-        em = discord.Embed(title=f"Userinfo für {member.display_name}", color=discord.Color.from_rgb(83, 22, 159))
+        em = discord.Embed(title=f"Userinfo für {member.display_name}", color=discord.Color.from_rgb(235, 73, 238))
         em.add_field(name=f"Name", value=f"{member.name}", inline=False)
         em.add_field(name=f"ID", value=f"{member.id}", inline=False)
         em.add_field(name=f"Erstellungsdatum", value=f"<t:{int(created_at)}:F>", inline=False)
@@ -90,6 +90,14 @@ class UtilitieCog(commands.Cog):
 
         em.set_thumbnail(url=member.avatar_url_as(size=4096))
 
+        true_member_count = len([m for m in ctx.guild.members if not m.bot])
+        channel = ctx.guild.get_channel(878401877715329064)
+        await channel.edit(name = f"😃 User: {true_member_count}")
+
+        bot_count = len([m for m in ctx.guild.members if m.bot])
+        channel = ctx.guild.get_channel(878401060069339207)
+        await channel.edit(name = f"🤖 Bots: {bot_count}")
+
         channel = self.client.get_channel(769620365403357254)
         await channel.send(embed=em)
 
@@ -101,8 +109,16 @@ class UtilitieCog(commands.Cog):
         em.add_field(name="Ging", value=f"<t:{int(time.time())}:F>", inline=False)
         em.set_thumbnail(url=member.avatar_url_as(size=4096))
 
+        true_member_count = len([m for m in ctx.guild.members if not m.bot])
+        channel = ctx.guild.get_channel(878401877715329064)
+        await channel.edit(name = f"😃 User: {true_member_count}")
+
+        bot_count = len([m for m in ctx.guild.members if m.bot])
+        channel = ctx.guild.get_channel(878401060069339207)
+        await channel.edit(name = f"🤖 Bots: {bot_count}")
+
         channel = self.client.get_channel(769620365403357254)
         await channel.send(embed=em)
 
 def setup(client):
-    client.add_cog(UtilitieCog(client))
+    client.add_cog(Utilitie(client))

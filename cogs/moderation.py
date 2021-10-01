@@ -3,7 +3,7 @@ from discord.ext import commands
 
 
 
-class ModCog(commands.Cog):
+class Mod(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -25,8 +25,8 @@ class ModCog(commands.Cog):
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason):
 
-        offen_fur_alle = self.client.get_channel(839480594311413761)
-        invitelink = await discord.abc.GuildChannel.create_invite(offen_fur_alle, max_uses=1, max_age=0)
+        invite = self.client.get_channel(839480594311413761)
+        invitelink = await invite.create_invite(max_uses=1, max_age=0)
         try:
             await member.send(
                 f"You got kicked from ►𝙏𝙝𝙚𝘿𝙧𝙖𝙜𝙤𝙣𝙨◄ \nBecause: {reason}\n{invitelink}")  # mod
@@ -39,18 +39,18 @@ class ModCog(commands.Cog):
         await ctx.send(embed=em)
 
         log_channel = self.client.get_channel(769620365403357254)
-        em = discord.Embed(
-            description=f"**Kick** | Case {case}\nUser: {member}\nReason: {reason}\nModerator: {ctx.author.name}, {ctx.author.id}")
-        await log_channel.send(embed=em)
+        em = discord.Embed(title = ":exclamation: **KICK** :exclamation:",
+                           description=f"<@{ctx.author.id}> kicked {member}\nBecause:{reason}")
+        log_channel.send(embed=em)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member: discord.Member, *, reason="No reason provided"):
+    async def ban(self, ctx, member: discord.Member, *, reason):
         await member.ban(reason=reason)
         await ctx.send(f'User {member} has been banned')  # mod
         log_channel = self.client.get_channel(769620365403357254)
-        em = discord.Embed(
-            description=f"**Ban** | Case {case}\nUser: {member}\nReason: {reason}\nModerator: {ctx.author}, {ctx.author.id}")
+        em = discord.Embed(title=":exclamation: **BAN**",
+                           description=f"<@{ctx.author.id}> banned {member}\nBecause:{reason}")
         await log_channel.send(embed=em)
 
     @commands.command()
@@ -74,4 +74,4 @@ class ModCog(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(ModCog(client))
+    client.add_cog(Mod(client))
