@@ -1,0 +1,14 @@
+{
+    "cogs": {
+        "bot": "1",
+        "fun": "0",
+        "games": "0",
+        "help": "1",
+        "moderation": "0",
+        "modutils": "0",
+        "music": "0",
+        "stats": "0",
+        "utilitie": "0",
+        "verification": "0"
+    }
+}
