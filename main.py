@@ -72,32 +72,23 @@ ch_pr.start()
 
 
 
-client.loop.create_task(ch_pr())
-
-
 @client.command()
-@commands.has_permissions(administrator=True)
-async def dev(ctx):
+async def cogs(ctx):
 
     with open("json-data/loads.json", "r") as f:
         loads = json.load(f)
+    
+    loads = loads["cogs"]
+    
+    embed = discord.Embed(title="Cog Board",
+                          description="Shows wich Modules are loaded",
+                          color=discord.Color.dark_red())
 
-    em = discord.Embed(title="Load Board",
-                       description=f"Shows wich Modules are loaded",
-                       color=discord.Color.dark_red())
+    for key, value in loads.items():
 
-    em.add_field(name="Bot", value=["Off" if loads["cogs"]["bot"] == "0" else "On"])
-    em.add_field(name="Fun", value=["Off" if loads["cogs"]["fun"] == "0" else "On"])
-    em.add_field(name="Games", value=["Off" if loads["cogs"]["games"] == "0" else "On"])
-    em.add_field(name="Help", value=["Off" if loads["cogs"]["help"] == "0" else "On"])
-    em.add_field(name="Moderation", value=["Off" if loads["cogs"]["moderation"] == "0" else "On"])
-    em.add_field(name="Modutils", value=["Off" if loads["cogs"]["modutils"] == "0" else "On"])
-    em.add_field(name="Music", value=["Off" if loads["cogs"]["music"] == "0" else "On"])
-    em.add_field(name="Stats", value=["Off" if loads["cogs"]["stats"] == "0" else "On"])
-    em.add_field(name="Utilitie", value=["Off" if loads["cogs"]["utilitie"] == "0" else "On"])
-    em.add_field(name="Verification", value=["Off" if loads["cogs"]["verification"] == "0" else "On"])
+        embed.add_field(name=key.capitalize(), value=f'{"🟢" if value == "1" else "🔴"}')
 
-    await ctx.send(embed = em)
+    await ctx.send(embed = embed)
 
 
 """=cogs="""
